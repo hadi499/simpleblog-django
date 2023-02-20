@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Category{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6"> 
+        {% if user.is_authenticated %}
+        <h1 class="text-center mb-3">Add Post</h1>
+        <div class="form-group">       
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-secondary mb-3">Add</button>
+        </form>
+        </div>
+        {% else %}
+        <p class="text-center">you are not allowed ! please, login.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

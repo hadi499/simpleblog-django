@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Post{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6"> 
+        {% if user.is_authenticated %}
+        <h1 class="text-center mb-3">Add Post</h1>
+        <div class="form-group">       
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form.as_p}}
+            <button class="btn btn-secondary mb-3">Post</button>
+        </form>
+        </div>
+        {% else %}
+        <p class="text-center">you are not allowed ! please, login.</p>
+        {% endif %}
+    </div>
+</div>
+<script>
+    const name = "{{user.id}}";
+    document.getElementById("author").value = name;
+</script>
+
+{% endblock content %}
